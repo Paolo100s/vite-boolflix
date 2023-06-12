@@ -16,7 +16,7 @@ export default {
     AppListSeries,
     AppSingleMovie,
     AppSingleSeries,
-    axios
+    axios,
   },
   data() {
     return {
@@ -27,6 +27,7 @@ export default {
     getMovies() {
       let movURL = store.apiMovieURL;
       if (!!store.searchText) {
+        // encode concatena,incoda anche caratteri speciali
         movURL = store.apiMovieURL + '&query=' + encodeURIComponent(store.searchText);
       } else {
         movURL = store.apiMovieURL + '&query=' + '';
@@ -39,10 +40,31 @@ export default {
         .catch(err => {
           console.log(err.message);
         })
+    },
+    getSeries() {
+      let serURL = store.apiSeriesURL;
+      if (!!store.searchText) {
+        serURL = store.apiSeriesURL + '&query=' + encodeURIComponent(store.searchText);
+      } else {
+        serURL = store.apiSeriesURL + '&query=' + '';
+      }
+      axios.get(serURL)
+        .then(resSer => {
+          store.seriesList = resSer.data.results;
+          console.log(store.seriesList);
+        })
+        .catch(err => {
+          console.log(err.message);
+        })
+    },
+    getAll() {
+      this.getMovies();
+      this.getSeries();
     }
   },
   created() {
     this.getMovies();
+    this.getSeries();
   }
 
 }
@@ -50,12 +72,16 @@ export default {
 
 <template>
   <header>
-    <AppHeader @search="getMovies" />
+    <AppHeader @search="getAll" />
   </header>
 
   <main>
     <section>
       <AppListMovies />
+    </section>
+
+    <section>
+      <AppListSeries />
     </section>
 
   </main>

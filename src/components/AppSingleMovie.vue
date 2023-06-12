@@ -21,25 +21,28 @@ export default {
 
 <template>
     <div class="card">
-        <img src="" alt="">
-        <h3>{{ details.title }}</h3>
-        <h4>{{ details.original_title }}</h4>
-        <span>
-            {{ details.original_language }}
-            <flag :iso="details.original_language == 'en' ? 'gb' : details.original_language" />
-        </span>
-        <span>{{ this.getVote() }}
-            <font-awesome-icon v-for="_ in Array(this.getVote())" icon="fa-solid fa-star" />
-            <font-awesome-icon v-for="_ in Array(5 - this.getVote())" icon="fa-regular fa-star" />
-        </span>
+        <div class="poster">
+            <img :src="`https://image.tmdb.org/t/p/w342/${details.poster_path}`" :alt="poster_path">
+        </div>
+        <div class="info">
+            <h3>Titolo: {{ details.title }}</h3>
+            <h4>Titolo originale: {{ details.original_title }}</h4>
+            <span>
+                Lingua:
+                <!-- dinamical bind da documentazione -->
+                <flag :iso="details.original_language == 'en' ? 'gb' : details.original_language" />
+            </span>
+            <span>
+                Voto:
+                <font-awesome-icon v-for="_ in Array(this.getVote())" icon="fa-solid fa-star" />
+                <font-awesome-icon v-for="_ in Array(5 - this.getVote())" icon="fa-regular fa-star" />
+            </span>
+        </div>
+
     </div>
 </template>
 
 <style lang="scss" scoped>
 @use '../styles/general.scss';
 @use '../styles/partials/variables.scss' as *;
-
-span {
-    display: block;
-}
 </style>

@@ -16,8 +16,11 @@ export default {
 </script>
 
 <template>
-    <div class="row">
-        <AppSingleMovie v-for="movie in store.moviesList" :details="movie" :key="movie.id" />
+    <h2 v-if="!!store.searchText">Film</h2>
+    <div class="container">
+        <div class="row">
+            <AppSingleMovie v-for="movie in store.moviesList" :details="movie" :key="movie.id" />
+        </div>
     </div>
 </template>
 

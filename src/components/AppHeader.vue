@@ -23,7 +23,7 @@ export default {
         <div class="logo">
             <h1>Boolfix</h1>
         </div>
-        <div class="search">
+        <div class="searchbar">
             <input type="text" size="30" placeholder="Search" v-model.trim="store.searchText">
             <button type="submit" @click.prevent="$emit('search')">Search</button>
         </div>
@@ -44,7 +44,7 @@ section {
         padding-left: 30px;
     }
 
-    .search {
+    .searchbar {
         padding-right: 30px;
 
         input {

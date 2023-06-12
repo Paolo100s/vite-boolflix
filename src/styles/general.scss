@@ -10,6 +10,7 @@ body {
     background-color: grey;
 }
 
+// header
 header {
     background-color: $black;
     height: 80px;
@@ -18,4 +19,52 @@ header {
         color: $primary;
         font-size: xx-large;
     }
+}
+
+// sections
+h2 {
+    background-color: $primary;
+    padding-left: 30px;
+}
+
+.container {
+    width: 80%;
+    margin: 30px auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+// card
+.card {
+    border: 1px solid azure;
+    max-width: 344px;
+    display: flex;
+
+    &:hover .poster {
+        display: none;
+    }
+
+    &:hover .info {
+        display: inline-block;
+    }
+}
+
+.info {
+    display: none;
+    width: 342px;
+    height: 100%;
+    background-color: $black;
+    color: azure;
+    padding: 30px;
+}
+
+span {
+    display: block;
+}
+
+.fa-star {
+    color: gold;
 }
